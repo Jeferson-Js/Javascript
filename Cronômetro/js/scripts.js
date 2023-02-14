@@ -13,6 +13,9 @@ let milliseconds = 0;
 let isPaused = true;
 
 startBtn.addEventListener("click", startTimer);
+pauseBtn.addEventListener("click", pauseTimer);
+continueBtn.addEventListener("click", continueTimer);
+resetBtn.addEventListener("click", resetTimer);
 
 function startTimer() {
   interval = setInterval(() => {
@@ -33,8 +36,6 @@ function startTimer() {
       milliseconsElement.textContent = formatMilleSeconds(milliseconds);
     }
   }, 10);
-  startBtn.style.display = "none";
-  pauseBtn.style.display = "block";
 }
 
 function formatTimer(time) {
@@ -42,5 +43,24 @@ function formatTimer(time) {
 }
 
 function formatMilleSeconds(time) {
-  return time < 100 ? `${time}`.padStart(3, "0") : time;
+  return time < 100 ? `${time}`.padStart(3,"0") : time;
+}
+
+function pauseTimer() {
+    isPaused = false;
+}
+
+function continueTimer() {
+    isPaused = true;
+}
+
+
+function resetTimer() {
+    clearInterval(interval);
+    minutes = 0;
+    seconds = 0;
+    milliseconds = 0;
+    minutesElement.textContent = formatTimer(minutes);
+    secondsElement.textContent = formatTimer(seconds);
+    milliseconsElement.textContent = formatMilleSeconds(milliseconds);
 }
