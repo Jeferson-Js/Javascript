@@ -1,0 +1,27 @@
+* {
+  margin: 1px;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+body {
+    background-color: #333
+}
+
+.area {
+  width: 1200px;
+  height: 615px;
+  border: 1px solid black;
+  display: flex;
+  margin: auto;
+  background-color: white;
+}
+
+.player img {
+  width: 300px;
+  height: 300px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
