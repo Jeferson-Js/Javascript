@@ -13,6 +13,7 @@ const renderizaLista = (usuarios) => {
     <h2>${usuario.password}</h2>
     <img src=${usuario.url} alt=${usuario.name}>
     <button id="deletar-user-${usuario.id}">Deletar</button>
+      <button id="atualizar-user-${usuario.id}">Atualizar</button>
 `
   );
   document.getElementById("app").innerHTML = htmlRender.join("");
@@ -20,6 +21,12 @@ const renderizaLista = (usuarios) => {
     const btnExcluir = document.getElementById(`deletar-user-${usuario.id}`);
     btnExcluir.addEventListener("click", () => {
       excluirUsuario(usuario.id);
+    });
+    const btnAtualizar = document.getElementById(
+      `atualizar-user-${usuario.id}`
+    );
+    btnAtualizar.addEventListener("click", (event) => {
+      atualizarUsuario(event, usuario.id);
     });
   });
 };
@@ -34,9 +41,9 @@ const excluirUsuario = (id) => {
 
 const addUsuario = (event) => {
   event.preventDefault();
-  const name = document.getElementById("name").value
-  const password = document.getElementById("password").value
-  const url = document.getElementById("url").value
+  const name = document.getElementById("name").value;
+  const password = document.getElementById("password").value;
+  const url = document.getElementById("url").value;
 
   fetch(baseUrl, {
     method: "POST",
@@ -56,3 +63,21 @@ document
 window.addEventListener("load", () => {
   mostraLista();
 });
+
+const atualizarUsuario = (event, id) => {
+  event.preventDefault();
+  const name = document.getElementById("name").value;
+  const password = document.getElementById("password").value;
+  const url = document.getElementById("url").value;
+
+  fetch(`${baseUrl}/${id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ name, password, url }),
+  }).then(() => {
+    mostraLista();
+    document.getElementById("formulario-login").reset();
+  });
+};
