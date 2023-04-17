@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-fundo: yellow;
+}
+
+body {
+  background-color: var(--bg-fundo);
+}
+
+h1 {
+  text-align: center;
+}
+
+
+#formulario-login {
+  background-color: blueviolet;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+}
+input {
+    margin: 1rem;
+    padding: 1rem;
+}
+
+#app {
+    background-color: black;
+}
+
+.colunas {
+    display: flex;
+}
+
+.coluna {
+    flex-basis: 40.44%;
+}
